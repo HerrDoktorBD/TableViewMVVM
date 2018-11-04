@@ -8,24 +8,25 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
 
-    fileprivate let viewModel = ProfileViewModel()
-    
-    @IBOutlet weak var tableView: UITableView?
-    
+    fileprivate let vm = ProfileVM()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView?.dataSource = viewModel
-        
+
+        title = "MultipleCellTypes"
+        navigationController?.navigationBar.prefersLargeTitles = true
+
+        tableView?.dataSource = vm
+
         tableView?.estimatedRowHeight = 100
-        tableView?.rowHeight = UITableViewAutomaticDimension
-        
-        tableView?.register(AboutCell.nib, forCellReuseIdentifier: AboutCell.identifier)
-        tableView?.register(NamePictureCell.nib, forCellReuseIdentifier: NamePictureCell.identifier)
-        tableView?.register(FriendCell.nib, forCellReuseIdentifier: FriendCell.identifier)
-        tableView?.register(AttributeCell.nib, forCellReuseIdentifier: AttributeCell.identifier)
-        tableView?.register(EmailCell.nib, forCellReuseIdentifier: EmailCell.identifier)
+        tableView?.rowHeight = UITableView.automaticDimension
+
+        tableView?.register(MainInfoCell.self, forCellReuseIdentifier: MainInfoCell.reuseIdentifier)
+        tableView?.register(AboutCell.self, forCellReuseIdentifier: AboutCell.reuseIdentifier)
+        tableView?.register(EmailCell.self, forCellReuseIdentifier: EmailCell.reuseIdentifier)
+        tableView?.register(AttributeCell.self, forCellReuseIdentifier: AttributeCell.reuseIdentifier)
+        tableView?.register(FriendCell.self, forCellReuseIdentifier: FriendCell.reuseIdentifier)
     }
 }
